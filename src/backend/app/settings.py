@@ -15,6 +15,10 @@ LOGGING_CONF = {
         }},
     'handlers': {
         'terminal': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'default'
+        },
+        'file': {
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'formatter': 'default',
             'filename': LOGGING_FILE,
@@ -25,7 +29,7 @@ LOGGING_CONF = {
         }},
     'root': {
         'level': 'DEBUG',
-        'handlers': ['terminal']
+        'handlers': ['file', 'terminal']
     }
 }
 
