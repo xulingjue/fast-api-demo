@@ -20,7 +20,7 @@ router = APIRouter(
 @router.get("/", tags=["users"])
 async def read_users():
     logger = logging.getLogger()
-    logger.info('进程运行时间：%s 爬虫已结束' % time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
+    logger.info('请求时间：%s ' % time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
     return [{"username": "Rick"}, {"username": "Morty"}]
 
 
