@@ -3,7 +3,8 @@ from decouple import config
 # 读取配置
 DEBUG = config("DEBUG", default=False, cast=bool)
 DATABASE_URL = config("DATABASE_URL", default="sqlite:///./test.db")
-SECRET_KEY = config("SECRET_KEY", default="mysecretkey")
+X_TOKEN = config("X_TOKEN", default="x-token")
+QUERY_TOKEN = config("QUERY_TOKEN", default="query")
 LOGGING_FILE = config("LOGING_FILE", default="log/access.log")
 
 # 日志配置
