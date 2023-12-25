@@ -4,6 +4,12 @@ uvicorn app.main:app --reload
 # 参考链接
 https://fastapi.tiangolo.com/zh/tutorial/bigger-applications/#api
 
+# 区分不同的环境
+使用环境变量，赋予不同的值
+```shell
+export FASTAPI_ENV_FILE=.env.production
+```
+
 # alembic使用
 
 安装

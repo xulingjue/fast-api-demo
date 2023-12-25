@@ -8,3 +8,4 @@ logs
 *.njsproj
 *.sln
 *.sw?
+/log/

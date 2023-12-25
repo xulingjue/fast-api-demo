@@ -1,9 +1,13 @@
+import logging
+import time
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+
+import app.schemas as schemas
 from app.api.deps import get_token_header
 from app.crud import crud_user
 from app.db import get_db
-import app.schemas as schemas
 
 router = APIRouter(
     prefix="/users",
@@ -15,6 +19,8 @@ router = APIRouter(
 
 @router.get("/", tags=["users"])
 async def read_users():
+    logger = logging.getLogger()
+    logger.info('进程运行时间：%s 爬虫已结束' % time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
     return [{"username": "Rick"}, {"username": "Morty"}]
 
 
