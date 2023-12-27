@@ -30,7 +30,25 @@ alembic init alembic
 alembic revision --autogenerate -m "initial"
 ```
 
+更新数据库结构
+```shell
+alembic revision --autogenerate -m "20231226_1"
+```
+
 运行数据库脚本
 ```shell
 alembic upgrade head
 ```
+
+
+# 待完善内容
+
+1. 事务实现
+2. 数据库初始化和版本管理
+3. 项目结构组织
+
+4. 参数校验
+5. 登录管理
+6. 切片，实现登录
+7. 如何丰富报错信息
+8. redis访问
