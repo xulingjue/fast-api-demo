@@ -1,13 +1,14 @@
 import logging
 import time
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 
 import app.schemas as schemas
 from app.api.deps import get_token_header
 from app.crud import crud_user
 from app.db import get_db
+from app.db import redis_client
 
 router = APIRouter(
     prefix="/users",
@@ -18,8 +19,10 @@ router = APIRouter(
 
 
 @router.get("/", tags=["users"])
-async def read_users():
+def read_users(request: Request):
     logger = logging.getLogger()
+    redis_client.set("user.email", "229533398@qq.com", 60)
+    logger.info(redis_client.get("user.email"))
     logger.info('请求时间：%s ' % time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
     return [{"username": "Rick"}, {"username": "Morty"}]
 
