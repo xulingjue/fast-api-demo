@@ -1,29 +1,26 @@
-import logging
-
 import redis
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from app.settings import DATABASE_URL
 
+# db pool
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}, pool_size=10
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-logger = logging.getLogger()
 
-
-# Dependency
+# db collection
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
-        logger.info("关闭db")
         db.close()
 
 
+# redis pool
 redis_pool = redis.ConnectionPool(
     host='10.0.74.222',
     port='6055',
