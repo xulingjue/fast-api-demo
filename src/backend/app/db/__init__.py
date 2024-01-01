@@ -22,10 +22,13 @@ def get_db():
 
 # redis pool
 redis_pool = redis.ConnectionPool(
-    host='10.0.74.222',
-    port='6055',
+    # host='10.0.74.222',
+    # port='6055',
+    # db=0,
+    # password='6xf0vHzZI$',
+    host='127.0.0.1',
+    port='6379',
     db=0,
-    password='6xf0vHzZI$',
     decode_responses=True
 )
 

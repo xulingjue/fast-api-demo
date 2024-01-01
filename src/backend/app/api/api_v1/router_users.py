@@ -5,10 +5,11 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 
 import app.schemas as schemas
-from app.api.deps import get_token_header
+from app.api.depends import get_token_header
 from app.crud import crud_user
-from app.db import get_db
-from app.db import redis_client
+from app.db import get_db, redis_client
+
+from app.api.decorators import log_request
 
 router = APIRouter(
     prefix="/users",
@@ -19,11 +20,12 @@ router = APIRouter(
 
 
 @router.get("/", tags=["users"])
-def read_users(request: Request):
+@log_request
+def read_users(user_id: int):
     logger = logging.getLogger()
     redis_client.set("user.email", "229533398@qq.com", 60)
     logger.info(redis_client.get("user.email"))
-    logger.info('请求时间：%s ' % time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
+    logger.info('请求时间：%s ,用户Id：%d' % (time.strftime("%A, %d. %B %Y %I:%M:%S %p"), user_id))
     return [{"username": "Rick"}, {"username": "Morty"}]
 
 

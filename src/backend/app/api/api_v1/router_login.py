@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from app.api.deps import get_token_header
+from app.api.depends import get_token_header
 
 router = APIRouter(
     prefix="/account",
@@ -12,4 +12,4 @@ router = APIRouter(
 
 @router.post("/")
 async def login():
-    return ""
+    return "login success"
